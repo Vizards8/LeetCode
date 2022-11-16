@@ -5,8 +5,7 @@
   - [Basic Syntax](#basic-syntax)
   - [String](#string)
   - [List: 基础数组](#list-基础数组)
-  - [Stack](#stack)
-  - [Queue](#queue)
+  - [Collections](#collections)
   - [ArrayList: 动态数组](#arraylist-动态数组)
   - [Deque](#deque)
   - [PriorityQueue: heap](#priorityqueue-heap)
@@ -17,11 +16,29 @@
 ### Basic Syntax
 [Back](#leetcode-for-java)
 
-* 最大最小值, 若溢出, 可以/2
+* 基本语法:
     ```java
+    // if / while / for
+    if (condition) {} else {}
+    while (condition) {}
+    for (int i = 0; i < 10; i++) {}
+
+    // 深拷贝，Object方法
+    Object b = a.clone();
+
     // Float Double Byte Character Short Integer Long
+    // 最大最小值, 若溢出, 可以/2
     int numMax = Integer.MAX_VALUE;
     int numMin = Integer.MIN_VALUE;
+
+    // 输出
+    System.out.println(Arrays.toString(arr));
+    System.out.println(queue.toString());
+
+    // Python: 3/2 3//2
+    double a = 1.0 * 1 / 2; // 0.5
+    int a = (int) Math.ceil(1.0 * 1 / 2);
+    double a = 1 / 2; // 0 建议用 ceil
     ```
 
 * String - Integer && Integer - String
@@ -32,6 +49,15 @@
   String a = "1";
   int i = Integer.parseInt(a);
   long i = Integer.parseLong(a);
+  ```
+
+* String - Character && Character - String
+  ```java
+  String s = "abc";
+  char[] cs = s.toCharArray();
+  // ().join(arr)
+  char[] arr = {'a', 'b', 'c'};
+  String s = String.valueOf(arr);
   ```
 
 * Chacter - Integer && Integer - Chacter
@@ -79,20 +105,18 @@
 * String:
   ```java
   String s = "asdefgasdefg";
-  for(int i = 0; i < s.length(); i++){
-    char c = s.charAt(i);
-  }
-  s.indexOf('s') //retrun 1
-  s.indexof('s',2) //return 7
-  s.lastIndexOf('s') //return 7
-  s.lastIndexOf('s',6) //return 1
-  string[] ss = s.split("regex");
+  s.indexOf('s');
+  s.split(" ");
+  s.length();
   String s = s.substring((int)start, (int)end) //[start,end)
   char[] cs = s.toCharArray();
   String s = s.toLowerCase();
   String s = s.toUpperCase();
   String s = s.trim(); 
-  String s = String.valueOf(object);
+  // 遍历
+  for(int i = 0; i < s.length(); i++){
+    char c = s.charAt(i);
+  }
   ```
 
 * StringBuilder:
@@ -114,12 +138,13 @@
 ```java
 int[] arr = new String[100];
 int[] arr = {1, 2, 3, 4};
+int len = arr.length;
 Arrays.sort(arr);
 Arrays.sort(arr, (int) start,(int) to);
 
-// 与list转换  List<Integer> 和 int[] 因类型不同不可直接转换
-List<String> list = Arrays.asList(a);
-String[] b = (String[]) list.toArray(new String[size]);
+// int[] <-> List<Integer>
+List<Integer> list = Arrays.asList(arr);
+int[] arr = list.toArray();
 
 // 深拷贝
 int[] b = arr.clone();
@@ -130,27 +155,16 @@ System.out.println(Arrays.toString(c))
 
 // 填充
 Arrays.fill(a, "fill");
-Arrays.fill(a, (int) start,(int) to, "fill");
 ```
 
-### Stack
+### Collections
 [Back](#leetcode-for-java)
-
 ```java
-Stack<Object> stack = new Stack<>();
-stack.pop();
-stack.peek();
-stack.push(Object o);
-```
-
-### Queue
-[Back](#leetcode-for-java)
-
-```java
-Queue<Object> queue = new LinkedList<>();
-queue.offer(Object o);
-queue.peek();
-queue.poll();
+list.isEmpty();
+list.size();
+list.toArray();
+Collections.reverse(list);
+Collections.sort(list);
 ```
 
 ### ArrayList: 动态数组
@@ -173,62 +187,31 @@ list.subList(int start,int end); // [start,end);
 ### Deque
 [Back](#leetcode-for-java)
 
-* Deque:
+* Deque: Stack / Queue / Deque
   ```java
-  Deque<Integer> deque = new LinkedList<>();
-  //添加元素到队首/队尾
+  Deque<Integer> deque = new ArrayDeque<>();
+  List<Integer> deque = new LinkedList<>(); // 可放null
+  // append
   deque.addFirst(1);
-  deque.offerFirst(1);
   deque.addLast(1);
-  deque.offerLast(1);
-  //取队首/队尾元素并删除
+  // pop
   deque.removeFirst();
-  deque.pollFirst();
   deque.removeLast();
-  deque.pollLast();
-  //取队首/队尾元素不删除
-  deque.peekFirst();
+  // 获取，不删除
   deque.getFirst();
-  deque.peekLast();
   deque.getLast();
-  ```
-
-* LinkedList:
-  ```java
-  LinkedList<Integer> num = new LinkedList<Integer>();
-  num.add(index);
-  num.remove(index);
-  num.isEmpty();
-  //通过对链表头尾操作可同时当stack和queue (初始化必须用LinkedList而不是List)
-  num.addFirst(Integer);
-  num.addLast(Integer);
-  num.getFirst();
-  num.getLast();
-  num.offer();
-  num.offerFirst(Integer);
-  num.offerLast(Integer);
-  num.removeLast();
   ```
 
 ### PriorityQueue: heap
 [Back](#leetcode-for-java)
 ```java
+// 默认小顶堆
 PriorityQueue<Integer> pq = new PriorityQueue<>(); 
 
-//改为大顶堆
-PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>(){
-    @Override
-    public int compare(Integer i1, Integer i2){
-        return i2-i1;
-    }
-}); 
-//简化写法（匿名Lambda表达式）
-Queue<Integer> pq = new PriorityQueue<>((n1,n2)->n2-n1); 
-
-pq.add(Integer);
-pq.offer(Integer);
-pq.poll();
-pq.remove()
+pq.add(Integer); // 添加
+pq.peek(); // 获取，不删除
+pq.poll(); // 删除
+pq.remove(Object); // 删除指定元素
 ```
 
 ### Set
@@ -236,16 +219,15 @@ pq.remove()
 
 * HashSet:
   ```java
-  Set<String> set = new HashSet<String>();
+  Set<String> set = new HashSet<>();
   set.add();
   set.contains();
   set.remove();
   ```
 * TreeSet: Sorted
   ```java
-  Set set = new HashSet((o1,o2)->o2-o1);
+  Set<String> set = new TreeSet<>((o1,o2)->o2-o1);
   ```
-
 
 ### Map
 [Back](#leetcode-for-java)
@@ -261,9 +243,9 @@ pq.remove()
   map.remove(key, value);
   map.clear();
   map.isEmpty();
+  map.size();
   map.keySet();
   map.values();
-  map.size();
   map.entrySet();
   //遍历
   //按键遍历
@@ -281,6 +263,7 @@ pq.remove()
   ```java
   //按照Key降序排序
   Map<Integer,Integer> map = new TreeMap<>((o1,o2)->o2-o1);
+
   //按照Value升序排序：可以把map.values()转换为list排序再sort
   Map<Integer,Integer> map = new HashMap<>()
   List<Map.Entry<Integer,Integer>> list = new ArrayList<>(map.entrySet());
