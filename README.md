@@ -107,7 +107,8 @@
   ```java
   String s = "asdefgasdefg";
   s.indexOf('s');
-  s.split(" ");
+  String[] list_s = s.split(" ");
+  String s = String.join(",", list_s);
   s.length();
   String s = s.substring((int)start, (int)end) //[start,end)
   char[] cs = s.toCharArray();
