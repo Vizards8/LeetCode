@@ -7,7 +7,7 @@
   - [List: 基础数组](#list-基础数组)
   - [Collections](#collections)
   - [ArrayList: 动态数组](#arraylist-动态数组)
-  - [Deque](#deque)
+  - [Deque: Stack / Queue / Deque](#deque-stack--queue--deque)
   - [PriorityQueue: heap](#priorityqueue-heap)
   - [Set](#set)
   - [Map](#map)
@@ -18,19 +18,19 @@
 
 * 基本语法:
     ```java
-    // && || !
+    // && || ! true false
     // if / while / for
-    if (condition) {} else {}
+    if (condition) {} else if (condition) {}
     while (condition) {}
     for (int i = 0; i < 10; i++) {}
 
-    // 深拷贝，Object方法
+    // 深拷贝，Object方法，[:]
     Object b = a.clone();
 
-    // Float Double Byte Character Short Integer Long
-    // 最大最小值, 若溢出, 可以/2
-    int numMax = Integer.MAX_VALUE;
-    int numMin = Integer.MIN_VALUE;
+    // 长度
+    数组: arr.length
+    字符串: str.length()
+    集合: list.size()
 
     // 输出
     System.out.println(Arrays.toString(arr));
@@ -40,35 +40,27 @@
     double a = 1.0 * 1 / 2; // 0.5
     int a = (int) Math.ceil(1.0 * 1 / 2);
     double a = 1 / 2; // 0 建议用 ceil
+  
+    // String[] - String
+    String s = String.join(",", list_s);
+
+    // 强转: Python: int() - String / char - int
+    int i = Integer.parseInt(s);
+    int i = Integer.parseInt(ch + "");
+    long i = Integer.parseLong(s);
+    long i = Double.parseDouble(s);
+
+    // String - char[]
+    char[] list_ch = s.toCharArray();
+
+    // ord()
+    System.out.println(ch - 'a');
+
+    // Float Double Byte Character Short Integer Long
+    // 最大最小值, 若溢出, 可以/2
+    int numMax = Integer.MAX_VALUE; // 2^31 - 1
+    int numMin = Integer.MIN_VALUE;
     ```
-
-* String - Integer && Integer - String
-  ```java
-  int i = 1;
-  String a = Integer.toString(i);
-  
-  String a = "1";
-  int i = Integer.parseInt(a);
-  long i = Integer.parseLong(a);
-  ```
-
-* String - Character && Character - String
-  ```java
-  String s = "abc";
-  char[] cs = s.toCharArray();
-  // ().join(arr)
-  char[] arr = {'a', 'b', 'c'};
-  String s = String.valueOf(arr);
-  ```
-
-* Chacter - Integer && Integer - Chacter
-  ```java
-  int i = 1;
-  char a = (char) (i + '0');
-  
-  char a = '1';
-  int i = a - '0';
-  ```
 
 * Math:
   ```java
@@ -106,31 +98,41 @@
 * String:
   ```java
   String s = "asdefgasdefg";
+  // 常用
+  char[] cs = s.toCharArray();
+  s.equals(s2); // == 引用类型，判断的是地址
+  s.charAt((int)index);
   s.indexOf('s');
+  s.length();
   String[] list_s = s.split(" ");
   String s = String.join(",", list_s);
-  s.length();
   String s = s.substring((int)start, (int)end) //[start,end)
-  char[] cs = s.toCharArray();
+  // 遍历
+  for (char c : s.toCharArray()) {}
+  // API
   String s = s.toLowerCase();
   String s = s.toUpperCase();
   String s = s.trim(); 
-  // 遍历
-  for(int i = 0; i < s.length(); i++){
-    char c = s.charAt(i);
-  }
   ```
 
-* StringBuilder:
+* StringBuilder: 可变长字符串
   ```java
   StringBuilder sb = new StringBuilder("String");
   sb.append("");
+  sb.charAt((int)index);
+  sb.length();
   sb.reverse();
-  sb.delete((int)start,(int)end); // [start,end)
-  sb.deleteCharAt(int index);
-  sb.insert((int)offset,"String");
+  sb.delete((int)start, (int)end); // [start,end)
   sb.toString();
-  sb.setCharAt((int)index,(char)c);
+  sb.setCharAt((int)index, (char)c);
+
+  // Python: ().join(arr) - Any[] - String
+  StringBuilder sb = new StringBuilder();
+  for (int i: arr) {
+    sb.append(i);
+    sb.append(",");
+  }
+  String s = sb.toString();
   ```
 
 
@@ -151,11 +153,10 @@ int[] arr = list.toArray();
 // 深拷贝
 int[] b = arr.clone();
 
-// 切片 & 输出
+// 切片
 String[] c = Arrays.copyOfRange(a, 1, 4); // [start,to)
-System.out.println(Arrays.toString(c))
 
-// 填充
+// 填充，初始化
 Arrays.fill(a, "fill");
 ```
 
@@ -166,7 +167,7 @@ list.isEmpty();
 list.size();
 list.toArray();
 Collections.reverse(list);
-Collections.sort(list);
+Collections.sort(list, Collections.reverseOrder());
 ```
 
 ### ArrayList: 动态数组
@@ -176,6 +177,7 @@ Collections.sort(list);
 List<Integer> list = new ArrayList<>();
 List<Integer> list = new ArrayList<>(Arrays.asList(a, b, c));
 list.add((int)index, Object o);
+list.addAll(list2);
 list.get(index);
 list.set(index, Integer);
 list.remove(index);
@@ -186,29 +188,30 @@ list.isEmpty();
 list.subList(int start,int end); // [start,end);
 ```
 
-### Deque
+### Deque: Stack / Queue / Deque
 [Back](#leetcode-for-java)
 
-* Deque: Stack / Queue / Deque
-  ```java
-  Deque<Integer> deque = new ArrayDeque<>();
-  List<Integer> deque = new LinkedList<>(); // 可放null
-  // append
-  deque.addFirst(1);
-  deque.addLast(1);
-  // pop
-  deque.removeFirst();
-  deque.removeLast();
-  // 获取，不删除
-  deque.getFirst();
-  deque.getLast();
-  ```
+```java
+Deque<Integer> deque = new LinkedList<>(); // 可放null
+// append
+deque.addFirst(1);
+deque.addLast(1);
+// pop，若空返回 null
+deque.pollFirst();
+deque.pollLast();
+// 获取，不删除， 若空返回 null
+deque.peekFirst();
+deque.peekLast();
+```
 
 ### PriorityQueue: heap
 [Back](#leetcode-for-java)
+
 ```java
-// 默认小顶堆
+// 小顶堆
 PriorityQueue<Integer> pq = new PriorityQueue<>(); 
+// 大顶堆
+PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
 
 pq.add(Integer); // 添加
 pq.peek(); // 获取，不删除
