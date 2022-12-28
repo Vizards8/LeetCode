@@ -7,7 +7,9 @@
   - [List: 基础数组](#list-基础数组)
   - [Collections](#collections)
   - [ArrayList: 动态数组](#arraylist-动态数组)
-  - [Deque: Stack / Queue / Deque](#deque-stack--queue--deque)
+  - [Queue](#queue)
+  - [Stack](#stack)
+  - [Deque](#deque)
   - [PriorityQueue: heap](#priorityqueue-heap)
   - [Set](#set)
   - [Map](#map)
@@ -188,14 +190,33 @@ list.isEmpty();
 list.subList(int start,int end); // [start,end);
 ```
 
-### Deque: Stack / Queue / Deque
+### Queue
 [Back](#leetcode-for-java)
 
 ```java
-Deque<Integer> deque = new LinkedList<>(); // 可放null
-// append
-deque.addFirst(1);
-deque.addLast(1);
+Deque<Integer> deque = new LinkedList<>(); // 可放null，但别放
+queue.offer(1); // 添加，失败，返回 false
+queue.poll(); // 删除，若为空，返回 null
+queue.peek(); // 获取，不删除
+```
+
+### Stack
+[Back](#leetcode-for-java)
+```java
+Deque<Integer> stack = new LinkedList<>(); // 可放null，但别放
+stack.push(1);
+stack.pop();
+stack.peek();
+```
+
+### Deque
+[Back](#leetcode-for-java)
+
+```java
+Deque<Integer> deque = new LinkedList<>(); // 可放null，但别放
+// append，若不能添加，返回 false
+deque.offerFirst(1);
+deque.offerLast(1);
 // pop，若空返回 null
 deque.pollFirst();
 deque.pollLast();
@@ -213,9 +234,9 @@ PriorityQueue<Integer> pq = new PriorityQueue<>();
 // 大顶堆
 PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
 
-pq.add(Integer); // 添加
-pq.peek(); // 获取，不删除
+pq.offer(Integer); // 添加
 pq.poll(); // 删除
+pq.peek(); // 获取，不删除
 pq.remove(Object); // 删除指定元素
 ```
 
