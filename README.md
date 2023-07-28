@@ -13,6 +13,7 @@
   - [PriorityQueue: heap](#priorityqueue-heap)
   - [Set](#set)
   - [Map](#map)
+  - [Bit Manipulation](#bit-manipulation)
 ***
 
 ### Basic Syntax
@@ -296,3 +297,13 @@ pq.remove(Object); // 删除指定元素
   List<Map.Entry<Integer,Integer>> list = new ArrayList<>(map.entrySet());
   Collections.sort(list, (o1,o2)->o1.getValue()-o2.getValue());
   ```
+
+### Bit Manipulation
+[Back](#leetcode-for-java)
+
+```java
+// 和python一样
+a & b; // 与
+a ^ b; // 异或
+a | b; // 或
+```
