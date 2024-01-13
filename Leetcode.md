@@ -51,6 +51,7 @@
   // 输出
   // Java 会自动调用 toString()
 
+  System.out.println(Arrays.toString(arr));
   System.out.println(arrayList);
 
   // 正常除法：3 / 2
