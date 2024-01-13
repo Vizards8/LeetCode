@@ -402,6 +402,7 @@ pq.peek(); // 获取，不删除
 
 // 放tuple?
 // a[0] ↑，a[1] ↓
+
 PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> {
   if (a[0] == b[0]) {
     return b[1] - a[1];
@@ -425,12 +426,15 @@ pq.offer(new int[] {1, 2});
   HashSet<String> set = new HashSet<>();
 
   // add
+
   set.add();
 
   // a in set
+
   set.contains();
 
   // remove
+
   set.remove();
   ```
 
@@ -447,18 +451,23 @@ pq.offer(new int[] {1, 2});
   HashMap<Integer, Integer> map = new HashMap<>()；
 
   // map[0] = 1
+
   map.put(key, value);
 
   // a = map[0]
+
   map.get(key);
 
   // a in map
+
   map.containsKey(key);
 
   // if not map
+
   map.isEmpty();
 
   // len(map)
+  
   map.size();
 
   //遍历
