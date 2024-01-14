@@ -498,6 +498,8 @@ pq.offer(new int[] {1, 2});
 
 ### Bit Manipulation
 
+[Back](#leetcode-java-语法默写)
+
 ```java
 
 // 与
