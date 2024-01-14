@@ -113,11 +113,11 @@
 
   // max(a, b)
 
-  Math.max((int) a, (int) b);
+  Math.max(a, b);
 
   // min(a, b)
 
-  Math.min((int) a, (int) b);
+  Math.min(a, b);
 
   // a ** b
 
@@ -289,6 +289,7 @@ Collections.reverse(list);
 // list.sort()
 
 Collections.sort(list, Collections.reverseOrder());
+list.sort((a, b) -> (b - a));
 ```
 
 ### ArrayList: 动态数组
