@@ -70,9 +70,16 @@
 
   Math.round(3 * 1.0 / 2)
 
-  // String[] - String
+  // ','.join(arr)
 
-  String s = String.join(",", list_s);
+  StringBuilder sb = new StringBuilder();
+  for (int i : arr) {
+      if (sb.length() > 0) {
+          sb.append(",");
+      }
+      sb.append(i);
+  }
+  String s = sb.toString();
 
   // string -> int/long/double
 
