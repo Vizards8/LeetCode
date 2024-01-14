@@ -224,6 +224,7 @@ list.isEmpty();
 list.size();
 Collections.reverse(list);
 Collections.sort(list, Collections.reverseOrder());
+list.sort((a, b) -> (b - a));
 ```
 
 ### ArrayList: 动态数组
