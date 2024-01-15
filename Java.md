@@ -42,7 +42,9 @@
   Collections: list.size()
 
   // 输出: Java 会自动调用 toString()
-  System.out.println(arrayList);
+  System.out.println(Arrays.toString(arr); // 1D
+  System.out.println(Arrays.deepToString(arr); // >= 2D
+  System.out.println(arrayList); // 1D & >= 2D
 
   // 正常除法：3 / 2
   double a = 3 * 1.0 / 2;
@@ -204,6 +206,7 @@ String[] c = Arrays.copyOfRange(a, 1, 4); // [start,to)
 
 // print
 System.out.println(Arrays.toString(arr));
+System.out.println(Arrays.deepToString(arr));
 
 // int[] <-> List<Integer>
 // 记不住的话，不如一个个放进去
@@ -249,7 +252,7 @@ list.subList(int start,int end); // [start,end);
 List<List<Integer>> res = new ArrayList<>();
 res.add(new ArrayList());
 res.add(new ArrayList());
-Collections.sort(rtes.get(0));
+Collections.sort(res.get(0));
 ```
 
 ### Queue
@@ -326,6 +329,7 @@ pq.offer(new int[] {1, 2});
 - HashSet:
   ```java
   Set<String> set = new HashSet<>();
+  Set<String> set = new HashSet<>(Arrays.asList(arr));
   set.add();
   set.contains();
   set.remove();
