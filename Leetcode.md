@@ -52,6 +52,7 @@
   // Java 会自动调用 toString()
 
   System.out.println(Arrays.toString(arr));
+  System.out.println(Arrays.deepToString(arr));
   System.out.println(arrayList);
 
   // 正常除法：3 / 2
@@ -298,10 +299,15 @@ list.sort((a, b) -> (b - a));
 
 ```java
 
-// 初始化
+// 初始化 一维
 
 List<Integer> list = new ArrayList<>();
 List<Integer> list = new ArrayList<>(Arrays.asList(a, b, c));
+
+// 初始化 二维
+List<List<Integer>> res = new ArrayList<>();
+res.add(new ArrayList<>());
+res.add(new ArrayList<>());
 
 // list.append(1)
 
@@ -433,6 +439,10 @@ pq.offer(new int[] {1, 2});
   // 初始化
 
   HashSet<String> set = new HashSet<>();
+
+  // int[] -> Set 初始化
+
+  HashSet<String> set = new HashSet<>(Arrays.asList(arr));
 
   // add
 
