@@ -245,14 +245,10 @@ Arrays.sort(arr);
 
 // int[] <-> List<Integer>
 
-List<Integer> list = Arrays.asList(arr);
+List<Integer> list = new ArrayList<>(Arrays.asList(arr));
 int[] arr = list.toArray();
 
-// 深拷贝 a = b[:]?
-
-int[] b = arr.clone();
-
-// a[1:3]
+// a[1:3]，深拷贝仅限一维，二维/对象都不行
 
 String[] c = Arrays.copyOfRange(a, 1, 4); // [start,to)
 
