@@ -250,8 +250,8 @@ list.subList(int start,int end); // [start,end);
 
 // 二维数组
 List<List<Integer>> res = new ArrayList<>();
-res.add(new ArrayList());
-res.add(new ArrayList());
+res.add(new ArrayList<>());
+res.add(new ArrayList<>());
 Collections.sort(res.get(0));
 ```
 
