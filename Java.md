@@ -75,8 +75,9 @@
 
   // Float Double Byte Character Short Integer Long
   // 最大最小值, 若溢出, 可以/2
+  // 32位整数，最高位是符号位
   int numMax = Integer.MAX_VALUE; // 2^31 - 1
-  int numMin = Integer.MIN_VALUE;
+  int numMin = Integer.MIN_VALUE; // -2^31
 
   // left = stack[-1] if stack else -1
   int left = stack.isEmpty() ? -1 : stack.peek();
