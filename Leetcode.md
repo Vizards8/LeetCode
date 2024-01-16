@@ -127,6 +127,10 @@
   // sqrt(a)
 
   Math.sqrt(a);
+
+  // random.random()
+  
+  Math.random(); 
   ```
 
 ### String
