@@ -89,12 +89,13 @@
   Math.max(a, b);
   Math.min(a, b);
 
-
   Math.floor(a); // ≤
   Math.ceil(a); // ≥
 
   (int) Math.pow(a, 2);
   Math.sqrt(a);
+
+  Math.random(); // random.random() [0, 1) double
   ```
 
   - GCD
