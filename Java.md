@@ -26,6 +26,7 @@
 
   ```java
   // && || ! true false
+  // ! (condition) 可以空格
   // 正负0: 0.0 = -0.0
   // if / while / for
   if (condition) {} else if (condition) {}
