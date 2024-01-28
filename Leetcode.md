@@ -97,6 +97,10 @@
 
   System.out.println(ch - 'a');
 
+  // chr()
+  
+  System.out.println((char) myInt); // 直接强转
+
   // Float Double Byte Character Short Integer Long
   // 最大最小值, 若溢出, 可以/2
 
