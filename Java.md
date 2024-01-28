@@ -74,6 +74,9 @@
   // ord()
   System.out.println(ch - 'a');
 
+  // chr()
+  System.out.println((char) myInt);
+
   // Float Double Byte Character Short Integer Long
   // 最大最小值, 若溢出, 可以/2
   // 32位整数，最高位是符号位
