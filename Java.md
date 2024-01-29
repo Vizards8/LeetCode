@@ -218,7 +218,7 @@ System.out.println(Arrays.deepToString(arr));
 // 记不住的话，不如一个个放进去
 Integer[] arr = {1, 2, 3};
 List<Integer> list = new ArrayList<>(Arrays.asList(arr));
-Integer[] arr2 = list.toArray(new Integer[list.size()]);
+Integer[] arr2 = list.toArray(new Integer[0]);
 
 // 填充，初始化
 Arrays.fill(a, "fill");
