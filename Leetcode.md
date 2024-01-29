@@ -254,7 +254,7 @@ Arrays.sort(arr);
 // int[] <-> List<Integer>
 
 List<Integer> list = new ArrayList<>(Arrays.asList(arr));
-int[] arr = list.toArray();
+Integer[] arr = list.toArray(new Integer[0]);
 
 // a[1:3]，深拷贝仅限一维，二维/对象都不行
 
