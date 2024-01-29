@@ -295,6 +295,11 @@ Collections.reverse(list);
 
 Collections.sort(list, Collections.reverseOrder());
 list.sort((a, b) -> (b - a));
+
+// bisect.bisect_left(arr, target)
+
+// find: id >= 0, insert: -id - 1
+Collections.binarySearch(arr, target);
 ```
 
 ### ArrayList: 动态数组
