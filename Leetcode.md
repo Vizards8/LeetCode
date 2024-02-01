@@ -369,7 +369,7 @@ queue.peek(); // 获取，不删除
 
 // 初始化
 
-Stack<Integer> stack = new Stack<>();
+Deque<Integer> stack = new LinkedList<>();
 
 // append / pop / [-1]
 
