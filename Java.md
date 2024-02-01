@@ -280,7 +280,7 @@ queue.peek(); // 获取，不删除
 [Back](#leetcode-for-java)
 
 ```java
-Stack<Integer> stack = new Stack<>();
+Deque<Integer> stack = new LinkedList<>();
 stack.push(1);
 stack.pop();
 stack.peek();
