@@ -194,6 +194,7 @@
 // res = [0 for _ in range(n)]
 int[] arr = new int[100];
 int[] arr = {1, 2, 3, 4};
+int[][] arr = {{1, 2}, {3, 4}};
 
 // len(arr)
 int len = arr.length;
