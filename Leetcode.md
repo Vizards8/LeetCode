@@ -343,6 +343,10 @@ list.isEmpty();
 // list[2:4]
 
 list.subList(int start,int end); // [start,end);
+
+// ArrayList -> Set
+
+Set<Integer> set = new HashSet<>(arrayList);
 ```
 
 ### Queue
@@ -465,6 +469,10 @@ pq.offer(new int[] {1, 2});
   // remove
 
   set.remove();
+
+  // Set -> ArrayList
+
+  List<Integer> list = new ArrayList<>(set);
   ```
 
 ### Map
