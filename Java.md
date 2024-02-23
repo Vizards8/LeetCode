@@ -263,6 +263,9 @@ List<List<Integer>> res = new ArrayList<>();
 res.add(new ArrayList<>());
 res.add(new ArrayList<>());
 Collections.sort(res.get(0));
+
+// ArrayList -> Set
+Set<Integer> set = new HashSet<>(arrayList);
 ```
 
 ### Queue
@@ -343,6 +346,9 @@ pq.offer(new int[] {1, 2});
   set.add();
   set.contains();
   set.remove();
+
+  // Set -> ArrayList
+  List<Integer> list = new ArrayList<>(set);
   ```
 - TreeSet: Sorted
   ```java
