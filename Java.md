@@ -83,6 +83,9 @@
   int numMax = Integer.MAX_VALUE; // 2^31 - 1
   int numMin = Integer.MIN_VALUE; // -2^31
 
+  // 溢出问题, c = a + b
+  long c = (long) a + b;
+
   // left = stack[-1] if stack else -1
   int left = stack.isEmpty() ? -1 : stack.peek();
   ```
