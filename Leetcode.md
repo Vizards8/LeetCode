@@ -93,6 +93,10 @@
 
   char[] list_ch = s.toCharArray();
 
+  // char[] - String
+
+  String s = new String(list_ch);
+
   // ord()
 
   System.out.println(ch - 'a');
@@ -156,6 +160,10 @@
   // string -> char[]
 
   char[] cs = s.toCharArray();
+
+  // char[] -> String
+
+  String s = new String(list_ch);
 
   // s1 == s2
 
