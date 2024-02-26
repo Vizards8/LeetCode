@@ -68,8 +68,9 @@
   long i = Integer.parseLong(s);
   double i = Double.parseDouble(s);
 
-  // String - char[]
+  // String <-> char[]
   char[] list_ch = s.toCharArray();
+  String s = new String(list_ch);
 
   // ord()
   System.out.println(ch - 'a');
@@ -136,6 +137,7 @@
 
   // 常用
   char[] cs = s.toCharArray();
+  String s = new String(cs);
   "abcd".equals(s2); // == 引用类型，判断的是地址
   s.charAt((int)index);
   s.indexOf('s');
