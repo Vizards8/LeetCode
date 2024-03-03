@@ -336,6 +336,10 @@ res.add(new ArrayList<>());
 list.add(1);
 list.addAll(list2);
 
+// list[i] 插入: new _list = list[:i] + [num] + list[i:]
+
+list.add(i, num);
+
 // list[0]
 
 list.get(index);
