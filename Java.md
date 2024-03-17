@@ -33,8 +33,9 @@
   while (condition) {}
   for (int i = 0; i < 10; i++) {}
 
-  // 深拷贝，Object方法，[:]
-  Object b = a.clone();
+  // 深拷贝 a = b[:]  
+  List<Integer> a = new ArrayList<>(b);
+  int[] a = Arrays.copyOfRange(b, 0, b.length);
 
   // 长度
   int[]: arr.length
