@@ -31,8 +31,9 @@
   while (condition) {}
   for (int i = 0; i < 10; i++) {}
 
-  // 深拷贝？
-  // a = b[:]
+  // 深拷贝 a = b[:]
+  
+  // a = new ArrayList<>(b);
 
   Object b = a.clone();
 
