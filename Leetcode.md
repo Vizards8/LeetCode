@@ -33,9 +33,9 @@
 
   // 深拷贝 a = b[:]
   
-  // a = new ArrayList<>(b);
-
-  Object b = a.clone();
+  List<Integer> a = new ArrayList<>(b);
+  
+  int[] a = Arrays.copyOfRange(b, 0, b.length);
 
   // 长度：int[] arr
 
