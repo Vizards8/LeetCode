@@ -170,6 +170,7 @@
   ```java
   StringBuilder sb = new StringBuilder("String");
   sb.append(String/char);
+  sb.deleteCharAt(sb.length() - 1);
   sb.charAt((int)index);
   sb.length();
   sb.reverse();
