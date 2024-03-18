@@ -213,6 +213,10 @@
 
   sb.append("");
 
+  // s.pop()
+
+  sb.deleteCharAt(sb.length() - 1);
+
   // s[0]
 
   sb.charAt((int)index);
