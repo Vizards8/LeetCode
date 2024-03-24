@@ -259,6 +259,7 @@ list.addAll(list2);
 list.get(index);
 list.set(index, Integer);
 list.remove(index);
+list.remove(Integer.valueOf(3));
 list.indexOf(Integer);
 list.lastIndexOf(Integer);
 list.contains(Integer);
