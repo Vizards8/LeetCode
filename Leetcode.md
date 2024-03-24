@@ -353,6 +353,14 @@ list.get(index);
 
 list.set(index, Integer);
 
+// list.pop(index)
+
+list.remove(index)
+
+// list.remove(value)
+
+list.remove(Integer.valueOf(3));
+
 // list.index(1)
 
 list.indexOf(Integer);
