@@ -208,7 +208,7 @@ int len = arr.length;
 
 // arr.sort()
 Arrays.sort(arr);
-Arrays.sort(arr, (a, b) -> a < b ? -1 : 1); // 反之 int 溢出
+Arrays.sort(arr, (a, b) -> a < b ? -1 : 1); // 防止 int 溢出
 
 // 深拷贝
 int[] b = arr.clone();
