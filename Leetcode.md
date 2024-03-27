@@ -269,6 +269,8 @@ int len = arr.length;
 
 Arrays.sort(arr);
 
+Arrays.sort(arr, (a, b) -> a < b ? -1 : 1);
+
 // int[] <-> List<Integer>
 
 List<Integer> list = new ArrayList<>(Arrays.asList(arr));
