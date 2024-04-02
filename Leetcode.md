@@ -156,7 +156,9 @@
 
   // s = 'aaa';
 
-  String s = "asdefgasdefg";
+  String s = "aaa";
+
+  String s = String.valueOf("aaa");
 
   // string -> char[]
 
