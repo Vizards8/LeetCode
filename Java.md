@@ -135,10 +135,11 @@
 
   ```java
   String s = "asdefgasdefg";
+  String s = new String(cs);
+  String s = String.valueOf(cs);
 
   // 常用
   char[] cs = s.toCharArray();
-  String s = new String(cs);
   "abcd".equals(s2); // == 引用类型，判断的是地址
   s.charAt((int)index);
   s.indexOf('s');
