@@ -15,6 +15,7 @@
   - [Set](#set)
   - [Map](#map)
   - [Bit Manipulation](#bit-manipulation)
+  - [ACM](#acm)
 
 ---
 
@@ -33,7 +34,7 @@
   while (condition) {}
   for (int i = 0; i < 10; i++) {}
 
-  // 深拷贝 a = b[:]  
+  // 深拷贝 a = b[:]
   List<Integer> a = new ArrayList<>(b);
   int[] a = Arrays.copyOfRange(b, 0, b.length);
 
@@ -350,6 +351,7 @@ pq.offer(new int[] {1, 2});
 [Back](#leetcode-for-java)
 
 - HashSet:
+
   ```java
   Set<String> set = new HashSet<>();
   Set<String> set = new HashSet<>(Arrays.asList(arr));
@@ -360,6 +362,7 @@ pq.offer(new int[] {1, 2});
   // Set -> ArrayList
   List<Integer> list = new ArrayList<>(set);
   ```
+
 - TreeSet: Sorted
   ```java
   Set<String> set = new TreeSet<>((o1,o2)->o2-o1);
@@ -420,4 +423,65 @@ a ^ b; // 异或
 a | b; // 或
 1 << a; // 左移
 1 >> a; // 右移
+```
+
+### ACM
+
+[Back](#leetcode-java-语法默写)
+
+```java
+// 注意：scanner.next() 和 scanner.nextLine() 不要混用
+
+// Init
+Scanner scanner = new Scanner(System.in);
+
+// 判断是否还有下一个输入
+while(scanner.hasNext()) {}
+
+// 判断是否还有下一个输入(数字格式)
+while(scanner.hasNextInt()) {}
+while(scanner.hasNextLong()) {}
+while(scanner.hasNextDouble()) {}
+while(scanner.hasNextFloat()) {}
+
+// 判断是否还有下一行输入
+while(scanner.hasNextLine()) {}
+
+// 获取下一个 String 格式
+String word = scanner.next();
+
+// 获取下一个 数字 格式
+int number = scanner.nextInt();
+long number = scanner.nextLong();
+double number = scanner.nextDouble();
+float number = scanner.nextFloat();
+
+// 获取下一行并分割
+String[] line = scanner.nextLine().split(" ");
+```
+
+```java
+// 模板
+import java.util.*;
+
+public class Main {
+    public static void main (String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNext()) {
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+        }
+
+        while (scanner.hasNextLine()) {
+            String[] line = scanner.nextLine().split(" ");
+        }
+
+        int T = scanner.nextInt();
+        for (int i = 0; i < T; i++) {
+            String[] line = scanner.nextLine().split(" ");
+        }
+    }
+}
+
 ```

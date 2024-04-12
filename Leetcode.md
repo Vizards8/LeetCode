@@ -13,6 +13,7 @@
     - [Set](#set)
     - [Map](#map)
     - [Bit Manipulation](#bit-manipulation)
+    - [ACM](#acm)
 
 ### Basic Syntax
 
@@ -32,9 +33,9 @@
   for (int i = 0; i < 10; i++) {}
 
   // 深拷贝 a = b[:]
-  
+
   List<Integer> a = new ArrayList<>(b);
-  
+
   int[] a = Arrays.copyOfRange(b, 0, b.length);
 
   // 长度：int[] arr
@@ -103,7 +104,7 @@
   System.out.println(ch - 'a');
 
   // chr()
-  
+
   System.out.println((char) myInt); // 直接强转
 
   // Float Double Byte Character Short Integer Long
@@ -113,9 +114,9 @@
   int numMin = Integer.MIN_VALUE;
 
   // 溢出问题, c = a + b
-  
+
   long c = (long) a + b;
-  
+
   // left = stack[-1] if stack else -1
 
   int left = stack.isEmpty() ? -1 : stack.peek();
@@ -142,8 +143,8 @@
   Math.sqrt(a);
 
   // random.random()
-  
-  Math.random(); 
+
+  Math.random();
   ```
 
 ### String
@@ -537,7 +538,7 @@ pq.offer(new int[] {1, 2});
   map.isEmpty();
 
   // len(map)
-  
+
   map.size();
 
   //遍历
@@ -582,5 +583,73 @@ a | b;
 // 右移
 
 1 >> a;
+
+```
+
+### ACM
+
+[Back](#leetcode-java-语法默写)
+
+```java
+// 注意：scanner.next() 和 scanner.nextLine() 不要混用
+
+// Init
+
+Scanner scanner = new Scanner(System.in);
+
+// 判断是否还有下一个输入
+
+while(scanner.hasNext()) {}
+
+// 判断是否还有下一个输入(数字格式)
+
+while(scanner.hasNextInt()) {}
+while(scanner.hasNextLong()) {}
+while(scanner.hasNextDouble()) {}
+while(scanner.hasNextFloat()) {}
+
+// 判断是否还有下一行输入
+
+while(scanner.hasNextLine()) {}
+
+// 获取下一个 String 格式
+
+String word = scanner.next();
+
+// 获取下一个 数字 格式
+
+int number = scanner.nextInt();
+long number = scanner.nextLong();
+double number = scanner.nextDouble();
+float number = scanner.nextFloat();
+
+// 获取下一行并分割
+
+String[] line = scanner.nextLine().split(" ");
+```
+
+```java
+// 模板
+import java.util.*;
+
+public class Main {
+    public static void main (String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNext()) {
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+        }
+
+        while (scanner.hasNextLine()) {
+            String[] line = scanner.nextLine().split(" ");
+        }
+
+        int T = scanner.nextInt();
+        for (int i = 0; i < T; i++) {
+            String[] line = scanner.nextLine().split(" ");
+        }
+    }
+}
 
 ```
