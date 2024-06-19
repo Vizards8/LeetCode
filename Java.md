@@ -45,8 +45,8 @@
   Collections: list.size()
 
   // 输出: Java 会自动调用 toString()
-  System.out.println(Arrays.toString(arr); // 1D
-  System.out.println(Arrays.deepToString(arr); // >= 2D
+  System.out.println(Arrays.toString(arr)); // 1D
+  System.out.println(Arrays.deepToString(arr)); // >= 2D
   System.out.println(arrayList); // 1D & >= 2D
 
   // 正常除法：3 / 2
