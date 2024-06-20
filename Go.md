@@ -6,12 +6,11 @@
   - [Basic Syntax](#basic-syntax)
   - [String](#string)
   - [List: 基础数组](#list-基础数组)
-  - [Collections](#collections)
-  - [ArrayList: 动态数组](#arraylist-动态数组)
+  - [Slice: 动态数组](#slice-动态数组)
   - [Queue](#queue)
   - [Stack](#stack)
   - [Deque](#deque)
-  - [PriorityQueue: heap](#priorityqueue-heap)
+  - [Heap](#heap)
   - [Set](#set)
   - [Map](#map)
   - [Bit Manipulation](#bit-manipulation)
@@ -223,48 +222,27 @@ for i := range a {
 }
 ```
 
-### Collections
+### Slice: 动态数组
 
 [Back](#leetcode-for-go)
 
 ```go
-list.isEmpty();
-list.size();
-Collections.reverse(list);
-Collections.sort(list, Collections.reverseOrder());
-list.sort((a, b) -> (b - a));
-// bisect.bisect_left(arr, target)
-// find: id >= 0, insert: -id - 1
-Collections.binarySearch(arr, target);
-```
-
-### ArrayList: 动态数组
-
-[Back](#leetcode-for-go)
-
-```go
-List<Integer> list = new ArrayList<>();
-List<Integer> list = new ArrayList<>(Arrays.asList(a, b, c));
-list.add((int)index, Object o);
-list.addAll(list2);
-list.get(index);
-list.set(index, Integer);
-list.remove(index);
-list.remove(Integer.valueOf(3));
-list.indexOf(Integer);
-list.lastIndexOf(Integer);
-list.contains(Integer);
-list.isEmpty();
-list.subList(int start,int end); // [start,end);
+list := []int{}
+list := []int{a, b, c}
+list = append(list, d)
+list = append(list[:index], list[index+1:]...)
+list[index] = value
+value := list[index]
+index := indexOf(list, value)
+contains := contains(list, value)
+empty := len(list) == 0
+sublist := list[start:end] // [start, end)
 
 // 二维数组
-List<List<Integer>> res = new ArrayList<>();
-res.add(new ArrayList<>());
-res.add(new ArrayList<>());
-Collections.sort(res.get(0));
-
-// ArrayList -> Set
-Set<Integer> set = new HashSet<>(arrayList);
+res := [][]int{}
+res = append(res, []int{})
+res = append(res, []int{})
+sort.Slice(res, func(i, j int) bool { return res[i][0] < res[j][0] })
 ```
 
 ### Queue
@@ -272,10 +250,13 @@ Set<Integer> set = new HashSet<>(arrayList);
 [Back](#leetcode-for-go)
 
 ```go
-Queue<Integer> queue = new LinkedList<>(); // 可放null，但别放
-queue.offer(1); // 添加，失败，返回 false
-queue.poll(); // 删除，若为空，返回 null
-queue.peek(); // 获取，不删除
+queue := list.New()
+queue.PushBack(1) // 添加
+e := queue.Front()
+if e != nil {
+    value := e.Value
+    queue.Remove(e) // 删除
+}
 ```
 
 ### Stack
@@ -283,10 +264,13 @@ queue.peek(); // 获取，不删除
 [Back](#leetcode-for-go)
 
 ```go
-Deque<Integer> stack = new LinkedList<>();
-stack.push(1);
-stack.pop();
-stack.peek();
+stack := list.New()
+stack.PushBack(1)
+e := stack.Back()
+if e != nil {
+    value := e.Value
+    stack.Remove(e)
+}
 ```
 
 ### Deque
@@ -294,111 +278,90 @@ stack.peek();
 [Back](#leetcode-for-go)
 
 ```go
-Deque<Integer> deque = new LinkedList<>(); // 可放null，但别放
-// append，若不能添加，返回 false
-deque.offerFirst(1);
-deque.offerLast(1);
-// pop，若空返回 null
-deque.pollFirst();
-deque.pollLast();
-// 获取，不删除， 若空返回 null
-deque.peekFirst();
-deque.peekLast();
+deque := list.New()
+deque.PushFront(1)
+deque.PushBack(1)
+e := deque.Front()
+if e != nil {
+    value := e.Value
+    deque.Remove(e)
+}
+e := deque.Back()
+if e != nil {
+    value := e.Value
+    deque.Remove(e)
+}
 ```
 
-### PriorityQueue: heap
+### Heap
 
 [Back](#leetcode-for-go)
 
 ```go
+import "container/heap"
+
 // 小顶堆
-PriorityQueue<Integer> pq = new PriorityQueue<>();
+h := &IntHeap{}
+heap.Init(h)
+heap.Push(h, 1)
+min := heap.Pop(h).(int)
+
 // 大顶堆
-PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));
+h := &IntHeap{}
+heap.Init(h)
+heap.Push(h, -1)
+max := -heap.Pop(h).(int)
 
-pq.offer(Integer); // 添加
-pq.poll(); // 删除
-pq.peek(); // 获取，不删除
-pq.remove(Object); // 删除指定元素
+type IntHeap []int
 
-// 放tuple? 想一想，java 可以自定义比较，必须要放tuple吗？
-// a - b 升序 / b - a 降序
-// return 1 -> a > b -> a 在后面
-PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> {
-  if (a[0] == b[0]) {
-    return b[1] - a[1];
-  } else {
-    return a[0] - b[0];
-  }
-});
-pq.offer(new int[] {1, 2});
+func (h IntHeap) Len() int           { return len(h) }
+func (h IntHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h *IntHeap) Push(x interface{}) { *h = append(*h, x.(int)) }
+func (h *IntHeap) Pop() interface{} {
+    old := *h
+    n := len(old)
+    x := old[n-1]
+    *h = old[0 : n-1]
+    return x
+}
+
 ```
 
 ### Set
 
 [Back](#leetcode-for-go)
 
-- HashSet:
+set：使用 map 实现 set
 
-  ```go
-  Set<String> set = new HashSet<>();
-  Set<String> set = new HashSet<>(Arrays.asList(arr));
-  set.add();
-  set.contains();
-  set.remove();
+```go
+set := make(map[string]struct{})
+set["item"] = struct{}{}
+_, exists := set["item"]
+delete(set, "item")
 
-  // Set -> ArrayList
-  List<Integer> list = new ArrayList<>(set);
-  ```
-
-- TreeSet: Sorted
-  ```go
-  Set<String> set = new TreeSet<>((o1,o2)->o2-o1);
-  ```
+// Set -> Slice
+var list []string
+for k := range set {
+    list = append(list, k)
+}
+```
 
 ### Map
 
 [Back](#leetcode-for-go)
 
-- HashMap: 允许 key，value 为 null
+map：不允许 key 为 nil
 
-  ```go
-  HashMap<Integer, Integer> map = new HashMap<>();
-  map.put(key, value);
-  map.getOrDefault(key, default);
-  map.get(key);
-  map.containsKey(key);
-  map.remove(key);
-  map.remove(key, value);
-  map.clear();
-  map.isEmpty();
-  map.size();
-  map.keySet();
-  map.values();
-  map.entrySet();
-  //遍历
-  //按键遍历
-  for (int key: map.keySet())
-  //按值遍历
-  for (int value: map.values())
-  //按Entry遍历
-  for (Map.Entry<Integer,Integer> entry: map.entrySet()){
-      entry.getKey();
-      entry.getValue();
-  }
-  ```
-
-- TreeMap
-
-  ```go
-  //按照 Key 降序排序
-  Map<Integer,Integer> map = new TreeMap<>((o1,o2)->o2-o1);
-
-  //按照 Value 升序排序：可以把 map.values() 转换为 list 排序再 sort
-  Map<Integer,Integer> map = new HashMap<>()
-  List<Map.Entry<Integer,Integer>> list = new ArrayList<>(map.entrySet());
-  Collections.sort(list, (o1,o2)->o1.getValue()-o2.getValue());
-  ```
+```go
+m := make(map[int]int)
+m[key] = value
+v, exists := m[key]
+delete(m, key)
+len(m)
+for k, v := range m {
+}
+```
 
 ### Bit Manipulation
 
@@ -406,11 +369,11 @@ pq.offer(new int[] {1, 2});
 
 ```go
 // 和python一样
-a & b; // 与
-a ^ b; // 异或
-a | b; // 或
-1 << a; // 左移
-1 >> a; // 右移
+a & b // 与
+a ^ b // 异或
+a | b // 或
+1 << a // 左移
+1 >> a // 右移
 ```
 
 ### ACM
@@ -418,58 +381,63 @@ a | b; // 或
 [Back](#leetcode-for-go)
 
 ```go
-// 注意：scanner.next() 和 scanner.nextLine() 不要混用
-
 // Init
-Scanner scanner = new Scanner(System.in);
-
-// 判断是否还有下一个输入
-while(scanner.hasNext()) {}
-
-// 判断是否还有下一个输入(数字格式)
-while(scanner.hasNextInt()) {}
-while(scanner.hasNextLong()) {}
-while(scanner.hasNextDouble()) {}
-while(scanner.hasNextFloat()) {}
+reader := bufio.NewReader(os.Stdin)
+scanner := bufio.NewScanner(os.Stdin)
+scanner.Split(bufio.ScanWords)
 
 // 判断是否还有下一行输入
-while(scanner.hasNextLine()) {}
+for scanner.Scan() {
+    line := scanner.Text()
+}
 
-// 获取下一个 String 格式
-String word = scanner.next();
+// 获取下一个字符串
+scanner.Scan()
+word := scanner.Text()
 
-// 获取下一个 数字 格式
-int number = scanner.nextInt();
-long number = scanner.nextLong();
-double number = scanner.nextDouble();
-float number = scanner.nextFloat();
+// 获取下一个整数
+scanner.Scan()
+number, _ := strconv.Atoi(scanner.Text())
 
-// 获取下一行并分割
-String[] line = scanner.nextLine().split(" ");
+// 获取一行并分割
+line, _ := reader.ReadString('\n')
+parts := strings.Fields(line)
 ```
 
 ```go
 // 模板
-import java.util.*;
+package main
 
-public class Main {
-    public static void main (String[] args) {
-        Scanner scanner = new Scanner(System.in);
+import (
+    "bufio"
+    "fmt"
+    "os"
+    "strconv"
+    "strings"
+)
 
-        while (scanner.hasNext()) {
-            int a = scanner.nextInt();
-            int b = scanner.nextInt();
+func main() {
+    scanner := bufio.NewScanner(os.Stdin)
+    scanner.Split(bufio.ScanWords)
+
+    for scanner.Scan() {
+        a, _ := strconv.Atoi(scanner.Text())
+        scanner.Scan()
+        b, _ := strconv.Atoi(scanner.Text())
+        fmt.Println(a + b)
+    }
+
+    reader := bufio.NewReader(os.Stdin)
+    for {
+        line, err := reader.ReadString('\n')
+        if err != nil {
+            break
         }
-
-        while (scanner.hasNextLine()) {
-            String[] line = scanner.nextLine().split(" ");
-        }
-
-        int T = scanner.nextInt();
-        for (int i = 0; i < T; i++) {
-            String[] line = scanner.nextLine().split(" ");
+        parts := strings.Fields(line)
+        for _, part := range parts {
+            num, _ := strconv.Atoi(part)
+            fmt.Println(num)
         }
     }
 }
-
 ```
