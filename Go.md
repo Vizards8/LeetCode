@@ -18,6 +18,7 @@
   - [Set](#set)
   - [Map](#map)
   - [Bit Manipulation](#bit-manipulation)
+  - [Error](#error)
   - [ACM](#acm)
 
 ---
@@ -528,6 +529,18 @@ a | b // 或
 1 << a // 左移
 1 >> a // 右移
 ```
+
+### Error
+
+[Back](#leetcode-for-go)
+
+```go
+data, err := getDataFromServer()
+if err != nil {
+    return fmt.Errorf("获取数据失败: %w", err)
+}
+```
+
 
 ### ACM
 
