@@ -170,10 +170,6 @@ fmt.Println("New value of a:", a)
   i, err := strconv.Atoi(s)
   f, err := strconv.ParseFloat(s, 64)
 
-  // String <-> []byte
-  b := []byte(s)
-  s := string(b)
-
   // ord()
   fmt.Println(int('a'))
 
@@ -258,46 +254,60 @@ fmt.Println("First Name:", person1.FirstName)
 
 [Back](#leetcode-for-go)
 
-- Comparison:
+```go
+str := "Hello, World!"
 
-  - strings.Builder 处理速度快但不是线程安全的
+// 常用
+len(str)
+greeting := "Hello, " + "Go!"
+substr := str[7:12] // [start, end)
+contains := strings.Contains(str, "World") // 包含
+index := strings.Index(str, "World") // 查找
+replaced := strings.Replace(str, "World", "Go", -1) // 替换
+split := strings.Split(str, ", ") // 分割
 
-- String:
+// Python: (',').join(arr)
+import "strings"
+arr := []string{"apple", "banana", "cherry"}
+result := strings.Join(arr, ",")
+
+// 遍历
+for index, c := range s {}
+for i := 0; i < len(s); i++ {
+    c := s[i]
+}
+
+// string -> int/float
+i, err := strconv.Atoi(s)
+f, err := strconv.ParseFloat(s, 64)
+
+// int -> string
+str := strconv.Itoa(num)
+
+// float -> string
+fstr := strconv.FormatFloat(fnum, 'f', 10, 64) // 保留10位，float64
+
+// API
+s := strings.ToLower(s)
+s := strings.ToUpper(s)
+s := strings.TrimSpace(s)
+
+// string -> strings.Builder
+str := "Hello, World!"
+var builder strings.Builder
+builder.WriteString(str)
+
+// strings.Builder -> string
+var builder strings.Builder
+builder.WriteString("Hello, World")
+result := builder.String()
+
+```
+
+- strings.Builder: 适用于需要频繁拼接字符串的情况
 
   ```go
-  s := "asdefgasdefg"
-
-  // 常用
-  cs := []rune(s)
-  strings.Compare("abcd", s2) == 0 // 比较两个字符串
-
-  s[index]
-  strings.Index(s, "sub")
-  len(s)
-  list_s := strings.Split(s, " ")
-  s := strings.Join(list_s, ",")
-  s := s[start:end] //[start, end)
-
-  // 遍历
-  for _, c := range s {
-  }
-  for i := 0; i < len(s); i++ {
-      c := s[i]
-  }
-
-  // string -> int/float
-  i, err := strconv.Atoi(s)
-  f, err := strconv.ParseFloat(s, 64)
-
-  // API
-  s := strings.ToLower(s)
-  s := strings.ToUpper(s)
-  s := strings.TrimSpace(s)
-  ```
-
-- StringBuilder: 可变长字符串
-
-  ```go
+  import "strings"
   var sb strings.Builder
   sb.WriteString("String")
   sb.WriteByte('a')
@@ -308,6 +318,9 @@ fmt.Println("First Name:", person1.FirstName)
   for i := 0; i < sb.Len(); i++ {
       sb.String()[i]
   }
+
+  // 输出
+  fmt.Println(builder.String()) 
 
   // Python: ().join(arr)
   sb.Reset()
@@ -341,6 +354,9 @@ for i := range a {
 // len(arr)
 len(arr)
 
+// 遍历
+for index, element := range arr {}
+
 // arr.sort()
 sort.Ints(arr)
 
@@ -357,11 +373,10 @@ c := arr[1:4] // [start, end)
 fmt.Println(arr)
 fmt.Println(arr2D)
 
-// // int[] <-> []int
-// // 记不住的话，不如一个个放进去
-// list := []int{1, 2, 3}
-// arr := make([]int, len(list))
-// copy(arr, list)
+// []int <-> slice
+list := []int{1, 2, 3}
+arr := make([]int, len(list))
+copy(arr, list)
 
 ```
 
@@ -376,15 +391,11 @@ list = append(list, d)
 list = append(list[:index], list[index+1:]...)
 list[index] = value
 value := list[index]
-index := indexOf(list, value)
-contains := contains(list, value)
-empty := len(list) == 0
 sublist := list[start:end] // [start, end)
 
 // 二维数组
 res := [][]int{}
-res = append(res, []int{})
-res = append(res, []int{})
+res = append(res, []int{1, 2, 3})
 sort.Slice(res, func(i, j int) bool { return res[i][0] < res[j][0] })
 ```
 
@@ -502,8 +513,7 @@ m[key] = value
 v, exists := m[key]
 delete(m, key)
 len(m)
-for k, v := range m {
-}
+for k, v := range m {}
 ```
 
 ### Bit Manipulation
