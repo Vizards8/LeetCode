@@ -25,7 +25,25 @@
 - 基本语法:
 
   ```go
+  // 变量申明，都可以批量操作
+  // 赋初值
+  var a int = 10
+  var b string = "hello"
+
+  // 不赋初值，使用默认
+  var e int         // 默认值为 0
+  var f string      // 默认值为空字符串 ""
+  
+  // 自动推断
+  var c = 20        // int 类型
+  var d = "world"   // string 类型
+
+  // 简短申明：只能在函数内部使用，编译器会自动推断
+  g := 30           // int 类型
+  h := "hello"      // string 类型
+  
   // && || ! true false
+  
   // if / for
   if condition {
   } else if condition {
@@ -87,6 +105,9 @@
 
   // left = stack[-1] if stack else -1
   Go 没有多目运算符
+
+  // 交换
+  a, b= b, a
   ```
 
 - Math:
