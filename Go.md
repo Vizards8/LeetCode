@@ -227,6 +227,13 @@ fmt.Println("New value of a:", a)
     return quotient, remainder
   }
 
+  // 函数返回值，有形参名字
+  func divide(x, y int) (quotient int, remainder int) {
+    quotient := x / y
+    remainder := x % y
+    return
+  }
+
   // 匿名函数
   add := func(x, y int) int {
       return x + y
