@@ -3,6 +3,9 @@
 ---
 
 - [Leetcode for Go](#leetcode-for-go)
+  - [Var](#Var)
+  - [Const](#Const)
+  - [Pointer](#Pointer)
   - [Basic Syntax](#basic-syntax)
   - [String](#string)
   - [List: 基础数组](#list-基础数组)
@@ -18,6 +21,75 @@
 
 ---
 
+### Var
+
+[Back](#leetcode-for-go)
+
+```go
+// 变量申明 var
+// 赋初值
+var a int = 10
+var b string = "hello"
+var l, m int = 60, 70
+
+// 不赋初值，使用默认
+var e int         // 默认值为 0
+var f string      // 默认值为空字符串 ""
+var n, o int
+
+// 自动推断
+var c = 20        // int 类型
+var d = "world"   // string 类型
+var vname1, vname2, vname3 = v1, v2, v3
+
+// 简短申明：只能在函数内部使用，编译器会自动推断
+g := 30           // int 类型
+h := "hello"      // string 类型
+vname1, vname2, vname3 := v1, v2, v3
+```
+
+### Const
+
+[Back](#leetcode-for-go)
+
+```go
+// 常量申明 const
+// 类型可省略，编译器会自动推断，不建议省略
+const greeting [string] = "Hello, Go!"
+const year [int] = 2024
+const isGoFun [bool] = true
+
+// iota 枚举，每一行 +1，可以认为是索引，有点抽象
+const (
+    Sunday = iota
+    Monday
+    Tuesday
+)
+
+fmt.Println(Sunday)   // 0
+fmt.Println(Monday)   // 1
+fmt.Println(Tuesday)  // 2
+```
+
+### Pointer
+
+[Back](#leetcode-for-go)
+
+```go
+var a int = 10
+var ptr *int
+
+ptr = &a   // 获取变量 a 的指针
+
+fmt.Println("Value of a:", a)   // 访问指针指向的值
+fmt.Println("Address of a:", &a)
+fmt.Println("Pointer ptr points to address:", ptr)
+fmt.Println("Value at address ptr points to:", *ptr)
+
+*ptr = 20   // 修改指针指向的值
+fmt.Println("New value of a:", a)
+```
+
 ### Basic Syntax
 
 [Back](#leetcode-for-go)
@@ -25,35 +97,42 @@
 - 基本语法:
 
   ```go
-  // 变量申明，都可以批量操作
-  // 赋初值
-  var a int = 10
-  var b string = "hello"
-
-  // 不赋初值，使用默认
-  var e int         // 默认值为 0
-  var f string      // 默认值为空字符串 ""
-  
-  // 自动推断
-  var c = 20        // int 类型
-  var d = "world"   // string 类型
-
-  // 简短申明：只能在函数内部使用，编译器会自动推断
-  g := 30           // int 类型
-  h := "hello"      // string 类型
+  // 运算符
+  // 算数运算符，关系运算符，逻辑运算符，赋值运算符 均和 Python 一致
   
   // && || ! true false
   
-  // if / for
+  // if
   if condition {
   } else if condition {
   } else {
   }
 
-  for condition {
+  // for
+  for i := 0; i < 10; i++ {
   }
 
-  for i := 0; i < 10; i++ {
+  // for range
+  numbers := []int{1, 2, 3, 4, 5}
+  for index, value := range numbers {
+    fmt.Printf("Index: %d, Value: %d\n", index, value)
+  }
+
+  // while
+  for condition {}
+
+  // switch...case
+  // 防止 if 嵌套过多
+  // 自动带 break，使用 fallthroug 取消
+  switch variable {
+  case value1 or condition1:
+      // 执行代码
+  case value2 or condition2:
+      // 执行代码
+  case value3, value4, value5:
+      // 执行代码
+  default:
+      // 执行代码
   }
 
   // 深拷贝
@@ -70,17 +149,21 @@
   fmt.Println(arr2D)     // >= 2D
   fmt.Println(arrayList) // 1D & >= 2D
 
+  // 格式化输出，其他类似 Java
+  fmt.Printf("Name: %s, Age: %d\n", name, age)
+
   // 正常除法：3 / 2
-  a := 3.0 / 2
+  res := float64(a) / float64(b)
 
-  // 向下取整：3 // 2
-  a := math.Floor(3.0 / 2)
+  // 向下取整：math.floor(3 / 2)
+  res := int(math.Floor(float64(a) / float64(b)))
 
-  // 截尾除法/向零截断：int(3 / 2)
+  // 截尾除法/向零截断：3 // 2
   a := 3 / 2
 
   // 四舍五入：round(a / b) 并不一样！
-  a := math.Round(3.0 / 2)
+  // 不能直接控制精度，通过 *100 /100 的方式实现
+  res := math.Round(float64(a) / float64(b) * 100) / 100
 
   // string -> int/float
   i, err := strconv.Atoi(s)
@@ -134,6 +217,23 @@
       }
       return a
   }
+  ```
+
+- Function:
+
+  ```go
+  // 常规函数
+  func divide(x, y int) (int, int) {
+    quotient := x / y
+    remainder := x % y
+    return quotient, remainder
+  }
+
+  // 匿名函数
+  add := func(x, y int) int {
+      return x + y
+  }
+  fmt.Println(add(3, 5)) // 使用匿名函数
   ```
 
 ### String
