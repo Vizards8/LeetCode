@@ -3,10 +3,11 @@
 ---
 
 - [Leetcode for Go](#leetcode-for-go)
-  - [Var](#Var)
-  - [Const](#Const)
-  - [Pointer](#Pointer)
+  - [Var](#var)
+  - [Const](#const)
+  - [Pointer](#pointer)
   - [Basic Syntax](#basic-syntax)
+  - [Struct](#struct)
   - [String](#string)
   - [List: 基础数组](#list-基础数组)
   - [Slice: 动态数组](#slice-动态数组)
@@ -236,6 +237,23 @@ fmt.Println("New value of a:", a)
   fmt.Println(add(3, 5)) // 使用匿名函数
   ```
 
+### Struct
+
+[Back](#leetcode-for-go)
+
+```go
+// 定义结构体
+type Person struct {
+    FirstName string
+    LastName  string
+    Age       int
+    City      string
+}
+
+// 访问结构体字段
+fmt.Println("First Name:", person1.FirstName)
+```
+
 ### String
 
 [Back](#leetcode-for-go)
@@ -310,7 +328,15 @@ fmt.Println("New value of a:", a)
 // res = [0 for _ in range(n)]
 arr := [100]int{}
 arr := [...]int{1, 2, 3, 4}
-arr2D := [...][2]int{{1, 2}, {3, 4}}
+arr2D := [...][2]int{
+    {1, 2}, 
+    {3, 4}
+}
+arr2 := [5]float32{1:2.0, 3:7.0} // 只初始化索引为 1 和 3 的元素
+// 填充，初始化
+for i := range a {
+    a[i] = "fill"
+}
 
 // len(arr)
 len(arr)
@@ -331,16 +357,12 @@ c := arr[1:4] // [start, end)
 fmt.Println(arr)
 fmt.Println(arr2D)
 
-// int[] <-> []int
-// 记不住的话，不如一个个放进去
-list := []int{1, 2, 3}
-arr := make([]int, len(list))
-copy(arr, list)
+// // int[] <-> []int
+// // 记不住的话，不如一个个放进去
+// list := []int{1, 2, 3}
+// arr := make([]int, len(list))
+// copy(arr, list)
 
-// 填充，初始化
-for i := range a {
-    a[i] = "fill"
-}
 ```
 
 ### Slice: 动态数组
