@@ -18,6 +18,7 @@
   - [Set](#set)
   - [Map](#map)
   - [Bit Manipulation](#bit-manipulation)
+  - [Defer](#defer)
   - [Error](#error)
   - [ACM](#acm)
 
@@ -359,33 +360,6 @@ for i := range a {
     a[i] = "fill"
 }
 
-// len(arr)
-len(arr)
-
-// 遍历
-for index, element := range arr {}
-
-// arr.sort()
-sort.Ints(arr)
-
-// 深拷贝
-b := append([]int(nil), arr...)
-
-// 切片
-c := arr[1:4] // [start, end)
-
-// reverse: a[::-1]
-// 手动双指针 reverse 吧
-
-// print
-fmt.Println(arr)
-fmt.Println(arr2D)
-
-// []int <-> slice
-list := []int{1, 2, 3}
-arr := make([]int, len(list))
-copy(arr, list)
-
 ```
 
 ### Slice: 动态数组
@@ -393,13 +367,67 @@ copy(arr, list)
 [Back](#leetcode-for-go)
 
 ```go
-list := []int{}
-list := []int{a, b, c}
-list = append(list, d)
-list = append(list[:index], list[index+1:]...)
-list[index] = value
-value := list[index]
-sublist := list[start:end] // [start, end)
+// 如果传入函数，传的是引用
+slice := []int{}
+slice := []int{a, b, c}
+slice = append(list, d)
+slice = append(list[:index], list[index+1:]...)
+slice[index] = value
+value := slice[index]
+sublist := slice[start:end] // [start, end)
+
+// 创建
+slice := make([]int, 5) // 创建一个长度和容量都为 5 的切片
+slice := make([]int, 5, 10) // 创建一个长度为 5 容量为 10 的切片
+
+// len(arr)
+len(slice)
+
+// 判空
+if slice == nil {}
+
+// 遍历
+for i, v := range slice {}
+for i := 0; i < len(slice); i++ {}
+
+// print
+fmt.Println(arr)
+fmt.Println(arr2D)
+
+// 浅拷贝
+shallowCopy := slice
+
+// 深拷贝（仅限一维，二维不行）
+deepCopy := make([]int, len(slice))
+copy(deepCopy, slice)
+copy(deepCopy, slice[:]) // [3]int -> slice
+
+// 深拷贝（仅限一维，二维不行）
+var deepCopy []int
+deepCopy = append(deepCopy, slice...)
+deepCopy = append(deepCopy, slice[:]...) // [3]int -> slice
+
+// reverse: a[::-1]
+// 手动双指针 reverse 吧
+func reverse(slice []int) {
+    for i, j := 0, len(slice)-1; i < j; i, j = i+1, j-1 {
+        slice[i], slice[j] = slice[j], slice[i]
+    }
+}
+
+// arr.sort()
+sort.Ints(slice) // 升序排序
+sort.Sort(sort.Reverse(sort.IntSlice(slice))) // 降序排序
+
+// 自定义排序
+// 升序排序
+sort.Slice(slice, func(i, j int) bool {
+    return slice[i] < slice[j]
+})
+// 降序排序
+sort.Slice(slice, func(i, j int) bool {
+    return slice[i] > slice[j]
+})
 
 // 二维数组
 res := [][]int{}
@@ -516,11 +544,20 @@ for k := range set {
 map：不允许 key 为 nil
 
 ```go
-m := make(map[int]int)
+// 初始化
+var m1 map[string]int // 必须要 make，不然报错
+m1 = make(map[string]int)
+m2 := make(map[string]int, 10)
+m3 := map[string]int{
+    "a": 1,
+    "b": 2,
+}
+
 m[key] = value
 v, exists := m[key]
 delete(m, key)
 len(m)
+fmt.Println(m)
 for k, v := range m {}
 ```
 
@@ -535,6 +572,22 @@ a ^ b // 异或
 a | b // 或
 1 << a // 左移
 1 >> a // 右移
+```
+
+### Defer
+
+[Back](#leetcode-for-go)
+
+```go
+// defer 会在当前函数返回之后执行
+// Stack 栈结构，后进先出，输出 三二一
+func main() {
+    defer fmt.Println("第一个 defer")
+    defer fmt.Println("第二个 defer")
+    defer fmt.Println("第三个 defer")
+    
+    fmt.Println("函数体")
+}
 ```
 
 ### Error
