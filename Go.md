@@ -251,7 +251,6 @@ fmt.Println("New value of a:", a)
 
 ```go
 // 定义结构体
-// 传的是拷贝，需要传引用需要用指针
 type Person struct {
     FirstName string
     LastName  string
@@ -261,6 +260,11 @@ type Person struct {
 
 // 访问结构体字段
 fmt.Println("First Name:", person1.FirstName)
+
+// 传的是拷贝，需要传引用需要用指针
+func updateName(p *Person) {
+    p.Name = "Updated"
+}
 ```
 
 ### String
