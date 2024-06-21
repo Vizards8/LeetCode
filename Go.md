@@ -240,6 +240,9 @@ fmt.Println("New value of a:", a)
       return x + y
   }
   fmt.Println(add(3, 5)) // 使用匿名函数
+
+  // 大写的函数名可以被包外的代码访问
+  // 小写的函数名只能在包内访问
   ```
 
 ### Struct
@@ -248,6 +251,7 @@ fmt.Println("New value of a:", a)
 
 ```go
 // 定义结构体
+// 传的是拷贝，需要传引用需要用指针
 type Person struct {
     FirstName string
     LastName  string
