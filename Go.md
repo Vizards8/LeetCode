@@ -381,31 +381,19 @@ for i := range a {
 
 ```go
 // 如果传入函数，传的是引用
+// 初始化
 slice := []int{}
 slice := []int{a, b, c}
-slice = append(list, d)
-slice = append(list[:index], list[index+1:]...)
-slice[index] = value
-value := slice[index]
-sublist := slice[start:end] // [start, end)
+slice := arr[:]
+slice := arr[start:end] // [start, end)
 
-// 创建
+// 通过 make 初始化
 slice := make([]int, 5) // 创建一个长度和容量都为 5 的切片
 slice := make([]int, 5, 10) // 创建一个长度为 5 容量为 10 的切片
 
-// len(arr)
-len(slice)
-
-// 判空
-if slice == nil {}
-
-// 遍历
-for i, v := range slice {}
-for i := 0; i < len(slice); i++ {}
-
-// print
-fmt.Println(arr)
-fmt.Println(arr2D)
+// arr.append(1)
+slice = append(list, d)
+slice = append(list[:index], list[index+1:]...)
 
 // 浅拷贝
 shallowCopy := slice
@@ -419,6 +407,25 @@ copy(deepCopy, slice[:]) // [3]int -> slice
 var deepCopy []int
 deepCopy = append(deepCopy, slice...)
 deepCopy = append(deepCopy, slice[:]...) // [3]int -> slice
+
+// 访问
+slice[index] = value
+value := slice[index]
+
+// len(arr)
+len(slice)
+cap(slice) // 容量
+
+// 判空
+if slice == nil {}
+
+// 遍历
+for i, v := range slice {}
+for i := 0; i < len(slice); i++ {}
+
+// print
+fmt.Println(arr)
+fmt.Println(arr2D)
 
 // reverse: a[::-1]
 // 手动双指针 reverse 吧
