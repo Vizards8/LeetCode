@@ -565,9 +565,11 @@ map：不允许 key 为 nil
 
 ```go
 // 初始化
-var m1 map[string]int // 必须要 make，不然报错
-m1 = make(map[string]int)
+var m1 map[string]int
+m1 = make(map[string]int) // 必须要 make，不然报错
+
 m2 := make(map[string]int)
+
 m3 := map[string]int{
     "a": 1,
     "b": 2,
