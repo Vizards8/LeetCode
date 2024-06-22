@@ -355,7 +355,11 @@ result := builder.String()
 [Back](#leetcode-for-go)
 
 ```go
+// 传参时需要严格匹配长度
+// 传参时是值拷贝，非引用
+
 // res = [0 for _ in range(n)]
+var arr [10]int
 arr := [100]int{}
 arr := [...]int{1, 2, 3, 4}
 arr2D := [...][2]int{
@@ -363,6 +367,7 @@ arr2D := [...][2]int{
     {3, 4}
 }
 arr2 := [5]float32{1:2.0, 3:7.0} // 只初始化索引为 1 和 3 的元素
+
 // 填充，初始化
 for i := range a {
     a[i] = "fill"
