@@ -250,21 +250,33 @@ fmt.Println("New value of a:", a)
 [Back](#leetcode-for-go)
 
 ```go
-// 定义结构体
-type Person struct {
-    FirstName string
-    LastName  string
-    Age       int
-    City      string
+//定义结构体
+type T struct {
+    name string
 }
+
+// 必须要这样写，才是结构体的方法，形参写函数括号中是普通函数
+// 默认传的是拷贝
+func (t T) method1() {
+    t.name = "new name1"
+}
+
+// 引用需要传指针
+func (t *T) method2() {
+    t.name = "new name2"
+}
+
+// 初始化：直接初始化
+t := T{name: "initial name"}
+
+// 初始化：使用构造函数初始化
+func NewT(name string) *T {
+    return &T{name: name}
+}
+t := NewT("initial name")
 
 // 访问结构体字段
-fmt.Println("First Name:", person1.FirstName)
-
-// 传的是拷贝，需要传引用需要用指针
-func updateName(p *Person) {
-    p.Name = "Updated"
-}
+t.name
 ```
 
 ### String
