@@ -356,6 +356,7 @@ result := builder.String()
 
 ```go
 // res = [0 for _ in range(n)]
+var arr [10]int
 arr := [100]int{}
 arr := [...]int{1, 2, 3, 4}
 arr2D := [...][2]int{
