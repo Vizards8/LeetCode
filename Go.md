@@ -277,6 +277,19 @@ t := NewT("initial name")
 
 // 访问结构体字段
 t.name
+
+// 接受者类似于 this、self
+// 方法值：隐式地包含了接收者
+mv1 := t.method1
+mv2 := t.method2
+mv1() // 调用
+mv2()
+
+// 方法表达式：显式传递接收者
+me1 := T.method1
+me2 := (*T).method2
+me1(t)  // 调用
+me2(&t)
 ```
 
 ### String
