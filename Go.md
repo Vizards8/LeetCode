@@ -1,4 +1,4 @@
-## Leetcode for Go
+![image](https://github.com/Vizards8/LeetCode/assets/62826757/cc1d4758-ca9a-4b83-bee2-b03d358b8dc0)## Leetcode for Go
 
 ---
 
@@ -252,7 +252,8 @@ fmt.Println("New value of a:", a)
 ```go
 //定义结构体
 type T struct {
-    name string
+    Name  string // 导出的字段
+    age   int    // 未导出的字段
 }
 
 // 必须要这样写，才是结构体的方法，形参写函数括号中是普通函数
