@@ -1,4 +1,4 @@
-![image](https://github.com/Vizards8/LeetCode/assets/62826757/cc1d4758-ca9a-4b83-bee2-b03d358b8dc0)## Leetcode for Go
+## Leetcode for Go
 
 ---
 
